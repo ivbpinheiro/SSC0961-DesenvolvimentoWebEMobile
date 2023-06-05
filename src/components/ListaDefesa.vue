@@ -6,12 +6,14 @@
         <p class="mt-3">Página atual: {{ currentPage }}</p>
         <v-pagination v-if="totalPages > 1" v-model="currentPage" :length="totalPages"
             :total-visible="Math.min(totalPages, maxPagesToShow)" @input="updatePage"></v-pagination>
-        <Defesa
-            v-for="(defesa, index) in paginatedDefesas"
-            :key="index"
-            :defesa="defesa"
-            @defesa-selecionada="exibirModalDefesa"
-          />
+        <div class="defesa-wrapper">
+            <Defesa
+                v-for="(defesa, index) in paginatedDefesas"
+                :key="index"
+                :defesa="defesa"
+                @defesa-selecionada="exibirModalDefesa"
+              />
+        </div>
     </div>
 </template>
 
@@ -80,6 +82,16 @@ export default ListaDefesa;
 <style scoped>
 .lista {
     padding: 1.5em;
+    height: 50em;
+}
+.defesa-wrapper::-webkit-scrollbar {
+  width: 0.5em; /* Define a largura da barra de rolagem */
+}
+.defesa-wrapper::-webkit-scrollbar-track {
+  background-color: transparent; /* Define a cor de fundo da área da barra de rolagem */
+}
+.defesa-wrapper::-webkit-scrollbar-thumb {
+  background-color: #0d3b66; /* Define a cor da alça da barra de rolagem */
 }
 
 .loader-container {
@@ -101,5 +113,9 @@ export default ListaDefesa;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.defesa-wrapper {
+  max-height: 90%; /* Ajuste a altura máxima conforme necessário */
+  overflow-y: auto;
 }
 </style>

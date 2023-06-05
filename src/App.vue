@@ -53,7 +53,7 @@ export default defineComponent({
 </script>
 
 <style>
-html {
+html, body {
   width: 100%;
   height: 100%;
   /* Define a altura do corpo como 100% */
@@ -63,6 +63,6 @@ html {
 }
 
 #main {
-  position: relative;
+  position: relative;  
 }
 </style>
