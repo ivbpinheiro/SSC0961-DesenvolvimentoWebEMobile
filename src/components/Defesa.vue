@@ -32,18 +32,23 @@
     >
       <template v-slot:default="{ isActive }">
         <v-card>
-          <v-toolbar
-            color="#0d3b66"
-            :title="defesa.Nome"
-          ></v-toolbar>
+          <v-toolbar color="#0d3b66">
+            <v-app-bar-nav-icon>
+              <v-icon color="white">mdi-account-details-outline</v-icon>
+            </v-app-bar-nav-icon>
+            <v-toolbar-title class="modal-title">Detalhes</v-toolbar-title>
+          </v-toolbar>
           <v-card-text>
-            <div class="text-h2 pa-12"> Teste</div>
+            <div class="text-h5"> {{defesa.Nome}}</div>
+            <div> <v-icon>mdi-book-education-outline</v-icon>  Curso: {{defesa.Curso}}</div>
+            <div> <v-icon>mdi-school-outline</v-icon>  Programa: {{defesa.Programa}}</div>
+            <div> <v-icon>mdi-calendar-range</v-icon>  Data: {{defesa.Data}}</div>
           </v-card-text>
           <v-card-actions class="justify-end">
             <v-btn
               variant="text"
               @click="isActive.value = false"
-            >Close</v-btn>
+            >FECHAR</v-btn>
           </v-card-actions>
         </v-card>
       </template>
@@ -69,8 +74,8 @@ export default defineComponent({
   },
   props: {
       defesa: {
-          type: Object as PropType<IDefesa>,
-          required: true
+        type: Object as PropType<IDefesa>,
+        required: true
       },
   },
   methods: {
@@ -83,7 +88,10 @@ export default defineComponent({
 
 <style scoped>
 .container {
-margin-bottom: 20px; 
+  margin-bottom: 20px; 
+}
+.modal-title {
+  color: white;
 }
 
 </style>
