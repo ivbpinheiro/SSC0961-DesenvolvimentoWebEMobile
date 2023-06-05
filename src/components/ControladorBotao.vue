@@ -1,5 +1,5 @@
 <template>
-    <button class="button" @click="clicado" :disabled="desabilitado">
+    <button class="button" @click="clicado">
       <span class="icon">
         <i :class="icone"></i>
       </span>
@@ -14,9 +14,6 @@
     name: "BotaoPlayStop",
     emits: ['clicado'],
     props: {
-      desabilitado: {
-        type: Boolean
-      },
       icone: {
         type: String,
         required: true
