@@ -1,10 +1,11 @@
 <template>
     <div class="box">
-        <div class="columns">
-            <div class="column is-8" role="form" aria-label="Consulte o nome do aluno">
-                <input type="text" class="input" placeholder="Consulte o nome do aluno" v-model="filtro" @keydown="filtrarLista">
+        <div class="columns is-centered">
+            <div class="column is-8 is-vcentered" role="form" aria-label="Consulte o nome do aluno">
+                <input type="text" class="input" placeholder="Consulte o nome do aluno" v-model="filtro"
+                    @keydown="filtrarLista">
             </div>
-            <div class="column">
+            <div class="column is-vcentered">
                 <Botoes @aoConsultar="mostrarLista" />
             </div>
         </div>
@@ -19,7 +20,7 @@ const FormularioConsulta = defineComponent({
     name: 'FormularioConsulta',
     emits: ['aoConsultarLista', 'aoFiltrarLista'],
     components: {
-        Botoes,
+        Botoes
     },
     data() {
         return {
@@ -39,4 +40,7 @@ export default FormularioConsulta
 </script>
 
 <style scoped>
+.columns {
+    align-items: center;
+}
 </style>

@@ -1,68 +1,43 @@
 <template>
-  <main class="columns is-gapless is-multiline" id="main">
-    <div class="column is-one-quarter">
-      <BarraLateral />
-    </div>
-    <div class="column is-three-quarter">
-      <Formulario @aoConsultarLista="loadDefesas" @aoFiltrarLista="enviaDadosFiltro"/>
-      <ListaDefesa :defesas="defesas" :loading="loading" :filtro="filtro"/>
-    </div>
-  </main>
+  <div class="nav-main">
+    <img src="./assets/logo.png" alt="logo do icmc - usp">
+    <nav>
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link>
+    </nav>
+  </div>
+    <router-view />  
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import BarraLateral from './components/BarraLateral.vue';
-import Formulario from './components/FormularioConsulta.vue';
-import IDefesa from './interfaces/IDefesa';
-import ListaDefesa from './components/ListaDefesa.vue';
-
-export default defineComponent({
-  name: 'App',
-  components: {
-    BarraLateral,
-    Formulario,
-    ListaDefesa
-  },
-  data() {
-    return {
-      defesas: [] as IDefesa[],
-      loading: false,
-      filtro: ''
-    }
-  },
-  computed: {
-
-  },
-  methods: {
-    loadDefesas() {
-      let url = "http://thanos.icmc.usp.br:4567/api/v1/defesas?ordem/json-viewer";
-      this.loading = true;
-      fetch(url)
-        .then((data) => (data.json()))
-        .then((response) => {
-          this.defesas = response["items"];
-          this.loading = false;
-        });
-    },
-    enviaDadosFiltro(dados: string) {
-      this.filtro = dados;
-    }
-  },
-});
-</script>
-
 <style>
-html, body {
-  width: 100%;
-  height: 100%;
-  /* Define a altura do corpo como 100% */
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+.nav-main {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background-color: #0d3b66;
 }
 
-#main {
-  position: relative;  
+nav {
+  flex-grow: 1;
+  text-align: center;
+}
+
+nav a {
+  font-weight: bold;
+  font-size: 25px;
+  color: #fff;  
+}
+
+nav a.router-link-exact-active {
+  color: #81f28b;
+}
+
+.nav-main img {
+  max-width: 100%;
+  max-height: 65px;
+  /* Ajuste o valor de acordo com suas necessidades */
+  display: block;
+  margin: 0;
+  border-radius: 100%;
 }
 </style>

@@ -89,7 +89,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   data() {
     return {
       dropdownOpen: false,
@@ -113,5 +115,5 @@ export default {
       this.porAnoCrescente = false;
     },
   },
-};
+});
 </script>
