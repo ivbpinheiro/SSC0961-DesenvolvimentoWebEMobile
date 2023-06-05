@@ -2,10 +2,10 @@
     <div class="box">
         <div class="columns">
             <div class="column is-8" role="form" aria-label="Consulte o nome do aluno">
-                <input type="text" class="input" placeholder="Consulte o nome do aluno" v-model="descricao">
+                <input type="text" class="input" placeholder="Consulte o nome do aluno" v-model="filtro" @keydown="filtrarLista">
             </div>
             <div class="column">
-               <Botoes @aoConsultar="finalizarTarefa" />
+                <Botoes @aoConsultar="mostrarLista" />
             </div>
         </div>
     </div>
@@ -17,20 +17,23 @@ import Botoes from './BotoesConsulta.vue';
 
 const FormularioConsulta = defineComponent({
     name: 'FormularioConsulta',
-    emits: ['aoSalvarTarefa'],
+    emits: ['aoConsultarLista', 'aoFiltrarLista'],
     components: {
         Botoes
     },
-    data () {
+    data() {
         return {
-            descricao: ''
+            filtro: ''
         }
     },
     methods: {
-        finalizarTarefa (): void {
-            this.$emit('aoSalvarTarefa')
+        mostrarLista(): void {
+            this.$emit('aoConsultarLista')
+        },
+        filtrarLista(): void {
+            this.$emit('aoFiltrarLista', this.filtro)
         }
-    }    
+    },
 })
 export default FormularioConsulta
 </script>
