@@ -4,14 +4,14 @@
             <ModalSpinner :show-modal="loading" />
         </div>
         <p class="mt-3">Página atual: {{ currentPage }}</p>
+        <v-pagination v-if="totalPages > 1" v-model="currentPage" :length="totalPages"
+            :total-visible="Math.min(totalPages, maxPagesToShow)" @input="updatePage"></v-pagination>
         <Defesa
             v-for="(defesa, index) in paginatedDefesas"
             :key="index"
             :defesa="defesa"
             @defesa-selecionada="exibirModalDefesa"
           />
-        <v-pagination v-if="totalPages > 1" v-model="currentPage" :length="totalPages"
-            :total-visible="Math.min(totalPages, maxPagesToShow)" @input="updatePage"></v-pagination>
     </div>
 </template>
 
@@ -58,7 +58,6 @@ const ListaDefesa = defineComponent({
             const endIndex = startIndex + this.itemsPerPage;
             return this.defesasFiltradas.slice(startIndex, endIndex);
         },
-
         totalPages(): number {
             return Math.ceil(this.defesasFiltradas.length / this.itemsPerPage);
         },

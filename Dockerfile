@@ -8,9 +8,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install -g @vue/cli-service-global
-
-RUN npm i --save-dev @fortawesome/fontawesome-free
+RUN npm install -g @vue/cli-service-global 
 
 COPY . .
 

@@ -36,7 +36,7 @@ export default defineComponent({
   },
   methods: {
     loadDefesas() {
-      let url = "http://thanos.icmc.usp.br:4567/api/v1/defesas";
+      let url = "http://thanos.icmc.usp.br:4567/api/v1/defesas?ordem/json-viewer";
       this.loading = true;
       fetch(url)
         .then((data) => (data.json()))
