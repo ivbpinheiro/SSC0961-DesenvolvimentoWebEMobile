@@ -19,7 +19,7 @@ const FormularioConsulta = defineComponent({
     name: 'FormularioConsulta',
     emits: ['aoConsultarLista', 'aoFiltrarLista'],
     components: {
-        Botoes
+        Botoes,
     },
     data() {
         return {
@@ -38,4 +38,5 @@ const FormularioConsulta = defineComponent({
 export default FormularioConsulta
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

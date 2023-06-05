@@ -3,16 +3,17 @@
         <div class="loader-container">
             <ModalSpinner :show-modal="loading" />
         </div>
-        <p class="mt-3">Página atual: {{ currentPage }}</p>
         <v-pagination v-if="totalPages > 1" v-model="currentPage" :length="totalPages"
             :total-visible="Math.min(totalPages, maxPagesToShow)" @input="updatePage"></v-pagination>
-        <div class="defesa-wrapper">
+            <v-divider></v-divider>
+            <GrupoFiltro ></GrupoFiltro>
+            <div class="defesa-wrapper">
             <Defesa
                 v-for="(defesa, index) in paginatedDefesas"
                 :key="index"
                 :defesa="defesa"
                 @defesa-selecionada="exibirModalDefesa"
-              />
+            />
         </div>
     </div>
 </template>
@@ -22,12 +23,14 @@ import { defineComponent } from 'vue';
 import Defesa from '../components/Defesa.vue';
 import ModalSpinner from '../components/ModalSpinner.vue';
 import IDefesa from '../interfaces/IDefesa';
+import GrupoFiltro from './GrupoFiltro.vue';
 
 const ListaDefesa = defineComponent({
     name: 'ListaDefesa',
     components: {
         Defesa,
         ModalSpinner,
+        GrupoFiltro,
     },
     data() {
         return {
@@ -52,6 +55,9 @@ const ListaDefesa = defineComponent({
         }
     },
     computed: {
+        porCurso(): IDefesa[] {
+            return this.defesas.filter((e: IDefesa) => (e.Nome.match(this.filtro)));
+        },
         defesasFiltradas(): IDefesa[] {
             return this.defesas.filter((e: IDefesa) => (e.Nome.match(this.filtro)));
         },
@@ -81,7 +87,7 @@ export default ListaDefesa;
 
 <style scoped>
 .lista {
-    padding: 1.5em;
+    padding: 1.0em;
     height: 50em;
 }
 .defesa-wrapper::-webkit-scrollbar {

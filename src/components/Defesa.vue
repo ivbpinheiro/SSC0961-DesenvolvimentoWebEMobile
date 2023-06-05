@@ -10,7 +10,7 @@
 <div class="d-flex justify-space-between align-center">
   <div>
     <div class="text-overline mb-1">
-      {{ defesa.Programa }} - {{ defesa.Curso }}
+      {{ defesa.Programa }} - {{ setCurso(defesa) }}
     </div>
     <div class="text-h6 mb-1">
       {{ defesa.Nome }}
@@ -40,7 +40,7 @@
           </v-toolbar>
           <v-card-text>
             <div class="text-h5"> {{defesa.Nome}}</div>
-            <div> <v-icon>mdi-book-education-outline</v-icon>  Curso: {{defesa.Curso}}</div>
+            <div> <v-icon>mdi-book-education-outline</v-icon>  Curso: {{setCurso(defesa)}}</div>
             <div> <v-icon>mdi-school-outline</v-icon>  Programa: {{defesa.Programa}}</div>
             <div> <v-icon>mdi-calendar-range</v-icon>  Data: {{defesa.Data}}</div>
           </v-card-text>
@@ -82,8 +82,14 @@ export default defineComponent({
     selecionarDefesa(defesa: IDefesa): void {
       this.showDefesa = true;
     },
-  }
-})
+    setCurso(defesa: IDefesa): string {
+      if(defesa.Curso == 'ME') return 'Mestrado';
+      if(defesa.Curso == 'DD') return 'Doutorado Direto';
+      if(defesa.Curso == 'DO') return 'Doutorado';
+      return defesa.Curso;
+    },
+  },
+});
 </script>
 
 <style scoped>
