@@ -1,5 +1,5 @@
 <template>
-  <main class="columns is-gapless is-multiline">
+  <main class="columns is-gapless is-multiline" id="main">
     <div class="column is-one-quarter">
       <BarraLateral />
     </div>
@@ -15,7 +15,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import BarraLateral from './components/BarraLateral.vue';
-import Formulario from './components/FormularioRegistroHoras.vue';
+import Formulario from './components/FormularioConsulta.vue';
 import IDefesa from './interfaces/IDefesa';
 import Defesa from './components/Defesa.vue';
 
@@ -58,7 +58,35 @@ export default defineComponent({
 </script>
 
 <style>
+html {
+  height: 100%; /* Define a altura do corpo como 100% */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#main{
+  width: 100%; /* Define a largura do contêiner como 100% */
+  height: 100%; /* Define a altura do contêiner como 100% */
+}
+
 .lista {
   padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Define uma altura fixa para o contêiner */
+  overflow: auto; /* Adiciona uma barra de rolagem quando o conteúdo excede a altura do contêiner */
+}
+
+.lista::-webkit-scrollbar {
+  width: 0.5em; /* Define a largura da barra de rolagem */
+}
+
+.lista::-webkit-scrollbar-track {
+  background-color: transparent; /* Define a cor de fundo da área da barra de rolagem */
+}
+
+.lista::-webkit-scrollbar-thumb {
+  background-color: #0d3b66; /* Define a cor da alça da barra de rolagem */
 }
 </style>

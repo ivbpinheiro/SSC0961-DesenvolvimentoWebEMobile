@@ -16,9 +16,6 @@
             <div class="column">
                 {{defesa.Ordem}}
             </div>
-            <!-- <div class="column">
-                <Cronometro :tempoEmSegundos="defesa.curso" />
-            </div> -->
         </div>
     </div>
 </template>
@@ -29,9 +26,6 @@ import IDefesa from "@/interfaces/IDefesa";
 
 export default defineComponent({
     name: "DefesaSalva",
-    // components: {
-    //     Cronometro,
-    // },
     props: {
         defesa: {
             type: Object as PropType<IDefesa>,

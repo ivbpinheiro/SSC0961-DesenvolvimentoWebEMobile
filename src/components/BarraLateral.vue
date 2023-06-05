@@ -17,10 +17,9 @@ export default BarraLateral;
 
 <style scoped>
 header {
-    padding: 1rem;
+    padding: 1.5rem;
     background: #0d3b66;
-    width: 100%;
-    height: 100vh;
+    height: 100vh;    
 }
 
 @media only screen and (max-width: 768px) {
