@@ -47,7 +47,7 @@
           <v-btn
             color="#0d3b66"
             variant="text"
-            @click="dropdownOpen = false"
+            @click="dropdownOpen = false, buscarCurso()"
           >
             Buscar
           </v-btn>
@@ -81,9 +81,7 @@
             Buscar
           </v-btn>
       </v-card-actions>
-      </v-card-text>
-
-      
+      </v-card-text>      
     </v-card> 
   </v-menu>
 </template>
@@ -104,7 +102,11 @@ export default defineComponent({
       porAnoCrescente: false,
     };
   },
+  emits: ['aoBuscarCurso', 'aoMudarOrdem'],
   methods: {
+    buscarCurso() {      
+      this.$emit('aoBuscarCurso', this.cursosSelecionados)            
+    },
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen;
     },

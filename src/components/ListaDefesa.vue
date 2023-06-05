@@ -6,13 +6,13 @@
         <v-pagination v-if="totalPages > 1" v-model="currentPage" :length="totalPages"
             :total-visible="Math.min(totalPages, maxPagesToShow)" @input="updatePage"></v-pagination>
             <v-divider></v-divider>
-            <GrupoFiltro ></GrupoFiltro>
-            <div class="defesa-wrapper">
+            <GrupoFiltro @aoBuscarCurso="filtrarCurso"></GrupoFiltro>
+            <div class="defesa-wrapper" v-if="filtroCurso">
             <Defesa
-                v-for="(defesa, index) in paginatedDefesas"
+                v-for="(defesa, index) in porCurso"
                 :key="index"
                 :defesa="defesa"
-                @defesa-selecionada="exibirModalDefesa"
+                @defesa-selecionada="exibirModalDefesa"                
             />
         </div>
     </div>
@@ -38,6 +38,7 @@ const ListaDefesa = defineComponent({
             currentPage: 1,
             maxPagesToShow: 5,
             defesaSelecionada: null as IDefesa | null,
+            filtroCurso: ''
         }
     },
     props: {
@@ -56,7 +57,10 @@ const ListaDefesa = defineComponent({
     },
     computed: {
         porCurso(): IDefesa[] {
-            return this.defesas.filter((e: IDefesa) => (e.Nome.match(this.filtro)));
+            console.log(this.filtroCurso)
+            const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+            const endIndex = startIndex + this.itemsPerPage;
+            return this.defesas.filter((e: IDefesa) => (e.Curso.match(this.filtroCurso))).slice(startIndex, endIndex);
         },
         defesasFiltradas(): IDefesa[] {
             return this.defesas.filter((e: IDefesa) => (e.Nome.match(this.filtro)));
@@ -67,10 +71,18 @@ const ListaDefesa = defineComponent({
             return this.defesasFiltradas.slice(startIndex, endIndex);
         },
         totalPages(): number {
+            if(this.filtroCurso){
+                return Math.ceil(this.porCurso.length / this.itemsPerPage);
+            }
             return Math.ceil(this.defesasFiltradas.length / this.itemsPerPage);
         },
     },
     methods: {
+        filtrarCurso(dado: string) {
+            this.filtroCurso = dado
+            console.log(this.filtroCurso)
+            return this.defesas.filter((e: IDefesa) => (e.Curso.match(this.filtroCurso)));
+        },
         updatePage(page: number) {
             this.currentPage = page;
         },
