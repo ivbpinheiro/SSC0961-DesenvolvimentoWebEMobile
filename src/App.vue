@@ -6,9 +6,25 @@
       <router-link to="/about">About</router-link>
     </nav>
   </div>
-    <router-view />  
+  <router-view />
+  <footer class="footer-main">
+    <div class="footer-div">
+      <p>SSC0961 - Desenvolvimento Web e Mobile - {{ anoAtual() }}</p>
+    </div>
+  </footer>
 </template>
-
+<script>
+import { defineComponent } from 'vue';
+const AppVue = defineComponent({
+    name: 'AppVue',  
+    methods: {
+      anoAtual() {
+        return new Date().getFullYear();
+      }
+    }
+})
+export default AppVue;
+</script>
 <style>
 .nav-main {
   display: flex;
@@ -25,7 +41,7 @@ nav {
 nav a {
   font-weight: bold;
   font-size: 25px;
-  color: #fff;  
+  color: #fff;
 }
 
 nav a.router-link-exact-active {
@@ -39,5 +55,22 @@ nav a.router-link-exact-active {
   display: block;
   margin: 0;
   border-radius: 100%;
+}
+
+.footer-main {
+  padding: 25px;
+  background-color: #0d3b66;  
+}
+
+.footer-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+p {  
+  color: #fff;
+  font-size: 20px;
+  font-weight: bold;
 }
 </style>

@@ -1,8 +1,8 @@
 <template>
   <main class="columns is-gapless is-multiline" id="main">
     <div class="column is-three-quarter">
-      <Formulario @aoConsultarLista="loadDefesas" @aoFiltrarLista="enviaDadosFiltro"/>
-      <ListaDefesa :defesas="defesas" :loading="loading" :filtro="filtro"/>
+      <Formulario @aoConsultarLista="loadDefesas" @aoFiltrarLista="enviaDadosFiltro" />
+      <ListaDefesa :defesas="defesas" :loading="loading" :filtro="filtro" />
     </div>
   </main>
 </template>
@@ -51,7 +51,8 @@ export default defineComponent({
 </script>
 
 <style>
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   /* Define a altura do corpo como 100% */
@@ -61,6 +62,6 @@ html, body {
 }
 
 #main {
-  position: relative;  
+  position: relative;
 }
 </style>
