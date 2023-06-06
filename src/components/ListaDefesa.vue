@@ -137,7 +137,12 @@ const ListaDefesa = defineComponent({
                 this.defesaSelecionada = defesa;
             }
         },
-    }
+    },
+    watch: { //se o valor de filtro mudar, volta pra página 1
+        filtro() {
+            this.currentPage = 1;
+        },
+    },
 });
 function convertDateStringToDate(dataString: string): Date {
     const parts = dataString.split('/');
