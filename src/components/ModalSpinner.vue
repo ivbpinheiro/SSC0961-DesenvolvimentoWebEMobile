@@ -1,15 +1,17 @@
 <template>
     <div class="modal-overlay" v-if="showModal">
       <div class="modal-content">
-            <sync-loader class="text-center" :loading="showModal" color="#0d3b66" size="55px"></sync-loader>
-
-        <slot></slot>
+            <v-progress-circular
+                v-if="showModal"
+                size="90"
+                color="#0d3b66"
+                indeterminate
+                ></v-progress-circular>
       </div>
     </div>
   </template>
   
 <script lang="ts">
-  import SyncLoader from 'vue-spinner/src/SyncLoader.vue';
 
   export default {
     name: 'ModalSpinner',
@@ -18,9 +20,6 @@
         type: Boolean,
         default: false,
       },
-    },
-    components: {
-      SyncLoader,
     },
   };
 </script>
@@ -41,6 +40,9 @@
   
   .modal-content {
     padding: 20px;
+    display: flex;
+    margin: 0 auto;
+    width: 200px;
   }
 </style>
   

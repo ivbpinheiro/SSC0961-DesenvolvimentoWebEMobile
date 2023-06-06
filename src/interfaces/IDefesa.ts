@@ -3,5 +3,5 @@ export default interface IDefesa {
     Programa: string,
     Ordem: number,
     Nome: string,
-    Data: Date
+    Data: string
 }

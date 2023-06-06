@@ -29,6 +29,9 @@ export default defineComponent({
   computed: {
 
   },
+  mounted() {
+    this.loadDefesas();
+  },
   methods: {
     loadDefesas() {
       let url = "http://thanos.icmc.usp.br:4567/api/v1/defesas?ordem/json-viewer";

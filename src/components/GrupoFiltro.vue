@@ -12,6 +12,15 @@
           <v-btn prepend-icon="mdi-filter-outline" variant="tonal" color="#0d3b66"  @click="toggleDropdown">
             Ano / curso
           </v-btn>
+          <v-chip draggable v-if="chipDeAno">
+            Por ano ({{porAnoCrescente}})
+          </v-chip>
+          <v-chip draggable v-if="chipDeCurso">
+            Por curso ({{cursosSelecionados}})
+          </v-chip>
+          <v-btn v-if="porAnoCrescente || cursosSelecionados" variant="text" color="red"  @click="resetarTudo">
+            Limpar filtros
+          </v-btn>
         </v-sheet>
       </div>
     </template>
@@ -55,12 +64,12 @@
       </v-card-text>
 
       <v-card-text>
-        <h2 class="text-h6 mb-2">
+        <h2 class="text-h6">
           Ano
         </h2>
 
         <v-chip-group column multiple>
-          <v-switch label="Ordem crescente" v-model="porAnoCrescente" inset></v-switch>
+          <v-switch label="Ordem crescente" v-model="isHabilitado" inset></v-switch>
         </v-chip-group>
 
         <v-card-actions>
@@ -76,7 +85,7 @@
           <v-btn
             color="#0d3b66"
             variant="text"
-            @click="dropdownOpen = false"
+            @click="dropdownOpen = false, buscarAno()"
           >
             Buscar
           </v-btn>
@@ -92,6 +101,7 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   data() {
     return {
+      isHabilitado: false,
       dropdownOpen: false,
       cursosSelecionados: null,
       cursos: [
@@ -99,13 +109,23 @@ export default defineComponent({
         { text: 'Doutorado (DO)', value: 'DO' },
         { text: 'Doutorado Direto (DD)', value: 'DD' },
       ],
-      porAnoCrescente: false,
+      porAnoCrescente: null as string | null,
+      chipDeCurso: false,
+      chipDeAno: false,
     };
   },
-  emits: ['aoBuscarCurso', 'aoMudarOrdem'],
+  emits: ['aoBuscarCurso', 'aoMudarOrdem', 'aoBuscarAno', 'aoResetarTudo'],
   methods: {
-    buscarCurso() {      
-      this.$emit('aoBuscarCurso', this.cursosSelecionados)            
+    buscarCurso() {
+      this.chipDeCurso = true
+      this.chipDeAno = false
+      this.$emit('aoBuscarCurso', this.cursosSelecionados)    
+    },
+    buscarAno() { 
+      this.chipDeAno = true
+      this.chipDeCurso = false
+      this.porAnoCrescente = this.isHabilitado ? 'ASC' : 'DESC';
+      this.$emit('aoBuscarAno', this.porAnoCrescente)       
     },
     toggleDropdown() {
       this.dropdownOpen = !this.dropdownOpen;
@@ -114,8 +134,22 @@ export default defineComponent({
       this.cursosSelecionados = null;
     },
     resetarAno() {
-      this.porAnoCrescente = false;
+      this.porAnoCrescente = null;
     },
+    resetarTudo() {
+      this.cursosSelecionados = null;
+      this.porAnoCrescente = null;
+      this.chipDeAno = false;
+      this.chipDeCurso = false;
+      this.$emit('aoResetarTudo') 
+    },
+  },
+  computed: {
+    reseta(): string {
+      this.resetarCursosSelecionados;
+      this.resetarAno;
+      return ''
+    }
   },
 });
 </script>
