@@ -22,7 +22,7 @@
     color="indigo"
     fab
     icon="mdi-eye-outline"
-    @click="selecionarDefesa(defesa)"
+    @click="selecionarDefesa()"
   ></v-btn>
 
   <v-dialog
@@ -79,7 +79,7 @@ export default defineComponent({
       },
   },
   methods: {
-    selecionarDefesa(defesa: IDefesa): void {
+    selecionarDefesa(): void {
       this.showDefesa = true;
     },
     setCurso(defesa: IDefesa): string {

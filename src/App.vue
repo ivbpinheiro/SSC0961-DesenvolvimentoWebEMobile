@@ -13,7 +13,7 @@
     </div>
   </footer>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue';
 const AppVue = defineComponent({
     name: 'AppVue',  
