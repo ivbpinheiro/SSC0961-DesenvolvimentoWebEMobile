@@ -8,9 +8,9 @@
             v-model="currentPage" 
             :length="totalPages"
             :total-visible="Math.min(totalPages, maxPagesToShow)" 
-            @input="atualizarPagina">
+            @input="atualizarPagina"
+            size="25px">
         </v-pagination>
-            <v-divider></v-divider>
             <GrupoFiltro @aoBuscarCurso="receberFiltroDeCurso" @aoBuscarAno="receberFiltroDeAno" @aoResetarTudo="receberListaTotal"></GrupoFiltro>
             <div class="defesa-wrapper" v-if="filtroCurso">
                 <Defesa
@@ -189,7 +189,7 @@ export default ListaDefesa;
     align-items: center;
 }
 .defesa-wrapper {
-  max-height: 52vh; /* Ajuste a altura máxima conforme necessário */
+  max-height: 60vh; /* Ajuste a altura máxima conforme necessário */
   overflow-y: auto;
 }
 </style>
