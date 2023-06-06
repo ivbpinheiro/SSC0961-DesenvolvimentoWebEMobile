@@ -24,7 +24,6 @@
         </v-sheet>
       </div>
     </template>
-
     <v-card class="mx-auto" max-width="400">
       <v-card-text>
         <h2 class="text-h6 mb-2">
@@ -61,8 +60,9 @@
             Buscar
           </v-btn>
       </v-card-actions>
-      </v-card-text>
-
+      </v-card-text>     
+      <v-divider>      
+      </v-divider>
       <v-card-text>
         <h2 class="text-h6">
           Ano

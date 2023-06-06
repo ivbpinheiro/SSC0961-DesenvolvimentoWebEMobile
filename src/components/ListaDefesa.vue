@@ -28,7 +28,7 @@
                     @defesa-selecionada="exibirModalDefesa"                
                 />
             </div>
-            <div class="defesa-wrapper" v-if="!filtroCurso">
+            <div class="defesa-wrapper" v-if="!filtroCurso && !filtroAno">
                 <Defesa
                     v-for="(defesa, index) in paginatedDefesas"
                     :key="index"
@@ -189,7 +189,7 @@ export default ListaDefesa;
     align-items: center;
 }
 .defesa-wrapper {
-  max-height: 90%; /* Ajuste a altura máxima conforme necessário */
+  max-height: 52vh; /* Ajuste a altura máxima conforme necessário */
   overflow-y: auto;
 }
 </style>

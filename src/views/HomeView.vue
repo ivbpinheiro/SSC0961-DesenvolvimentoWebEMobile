@@ -1,7 +1,9 @@
 <template>
-  <main class="columns is-gapless is-multiline" id="main">
-    <div class="column is-three-quarter">
-      <Formulario @aoConsultarLista="loadDefesas" @aoFiltrarLista="enviaDadosFiltro" />
+  <main class="columns" id="main">
+    <div class="column">
+      <div id="input-value">
+        <Formulario @aoConsultarLista="loadDefesas" @aoFiltrarLista="enviaDadosFiltro" />
+      </div>
       <ListaDefesa :defesas="defesas" :loading="loading" :filtro="filtro" />
     </div>
   </main>
@@ -63,5 +65,10 @@ body {
 
 #main {
   position: relative;
+}
+
+#input-value {
+  justify-content: center;
+  align-items: center;
 }
 </style>

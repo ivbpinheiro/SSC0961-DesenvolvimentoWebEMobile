@@ -1,6 +1,7 @@
 # vue-project-docker
 
 ## Project setup
+### Necessário pois o projeto é Vu3 com Vuetify
 ```
 npm install --force
 ```

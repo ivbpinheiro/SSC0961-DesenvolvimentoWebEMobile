@@ -2,8 +2,8 @@
   <div class="nav-main">
     <img src="./assets/logo.png" alt="logo do icmc - usp">
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Início</router-link> |
+      <router-link to="/about">Integrantes</router-link>            
     </nav>
   </div>
   <router-view />
@@ -13,6 +13,7 @@
     </div>
   </footer>
 </template>
+
 <script lang="ts">
 import { defineComponent } from 'vue';
 const AppVue = defineComponent({
@@ -58,14 +59,19 @@ nav a.router-link-exact-active {
 }
 
 .footer-main {
-  padding: 25px;
-  background-color: #0d3b66;  
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #0d3b66;
+  color: #fff;
+  padding: 20px;
 }
 
-.footer-div{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.footer-div {
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
 }
 
 p {  

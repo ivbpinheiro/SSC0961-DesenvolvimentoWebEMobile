@@ -1,6 +1,6 @@
 <template>
     <section class="is-flex is-align-items-center is-justify-content-space-between">      
-      <Botao @clicado="iniciar" icone="fas fa-search" texto="Consultar" />
+      <Botao @clicado="iniciar" icone="fas fa-receipt" texto="Recarregar lista" />
     </section>
   </template>  
 
